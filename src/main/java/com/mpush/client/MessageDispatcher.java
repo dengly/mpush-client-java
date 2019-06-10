@@ -36,6 +36,8 @@ import java.util.concurrent.Executor;
 /**
  * Created by ohun on 2016/1/20.
  *
+ * 消息分发器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class MessageDispatcher implements PacketReceiver {
@@ -83,6 +85,10 @@ public final class MessageDispatcher implements PacketReceiver {
         }
     }
 
+    /**
+     * 执行确认响应
+     * @param packet
+     */
     private void doAckResponse(Packet packet) {
         AckRequestMgr.RequestTask task = ackRequestMgr.getAndRemove(packet.sessionId);
         if (task != null) {

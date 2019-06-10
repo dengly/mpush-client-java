@@ -69,6 +69,7 @@ public class MPushClientTest {
                     .setClientVersion("2.0")
                     .setUserId("user-" + i)
                     .setTags("tag-" + i)
+                    .setAlias("deviceId-test" + i)
                     .setSessionStorageDir(cacheDir + i)
                     .setLogger(new DefaultLogger())
                     .setLogEnabled(true)

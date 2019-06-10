@@ -43,11 +43,17 @@ import static com.mpush.api.Constants.DEFAULT_SO_TIMEOUT;
 /**
  * Created by yxx on 2016/6/8.
  *
+ * Alloc客户端
+ *
  * @author ohun@live.cn (夜色)
  */
 /*package*/ final class AllotClient {
     private List<String> serverAddress = new ArrayList<>();
 
+    /**
+     * 获取MPush服务器地址
+     * @return
+     */
     public List<String> getServerAddress() {
         if (serverAddress.isEmpty()) {
             serverAddress = queryServerAddressList();
@@ -55,17 +61,24 @@ import static com.mpush.api.Constants.DEFAULT_SO_TIMEOUT;
         return serverAddress;
     }
 
+    /**
+     * 查询MPush服务器地址
+     * @return
+     */
     public List<String> queryServerAddressList() {
         ClientConfig config = ClientConfig.I;
         Logger logger = config.getLogger();
 
         if (config.getAllotServer() == null) {
+            // 如果没有配置Alloc服务器，则直接读取MPush服务器配置
             if (config.getServerHost() != null) {
+                // MPush服务器配置不为空
                 serverAddress.add(config.getServerHost() + ":" + config.getServerPort());
             }
             return serverAddress;
         }
 
+        // 连接Alloc服务器获取MPush服务器配置列表
         HttpURLConnection connection;
         try {
             URL url = new URL(config.getAllotServer());

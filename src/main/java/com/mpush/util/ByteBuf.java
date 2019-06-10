@@ -25,6 +25,8 @@ import java.nio.*;
 /**
  * Created by ohun on 2016/1/21.
  *
+ * 字节缓存
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class ByteBuf {

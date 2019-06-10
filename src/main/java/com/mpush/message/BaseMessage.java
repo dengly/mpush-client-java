@@ -32,6 +32,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by ohun on 2015/12/28.
  *
+ * 基本信息
+ *
  * @author ohun@live.cn (夜色)
  */
 public abstract class BaseMessage implements Message {

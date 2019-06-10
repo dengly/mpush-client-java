@@ -29,6 +29,7 @@ public final class SessionContext {
     public int heartbeat;
     public Cipher cipher;
     public String bindUser;
+    public String alias;
     public String tags;
 
     public void changeCipher(Cipher cipher) {
@@ -46,6 +47,11 @@ public final class SessionContext {
 
     public SessionContext setTags(String tags) {
         this.tags = tags;
+        return this;
+    }
+
+    public SessionContext setAlias(String alias) {
+        this.alias = alias;
         return this;
     }
 

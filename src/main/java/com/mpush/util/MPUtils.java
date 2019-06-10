@@ -42,6 +42,8 @@ public final class MPUtils {
      * decimal digits and dots. This pattern matches strings like "a:.23" and "54" that are neither IP
      * addresses nor hostnames; they will be verified as IP addresses (which is a more strict
      * verification).
+     *
+     * 严格校验ip地址
      */
     private static final Pattern VERIFY_AS_IP_ADDRESS = Pattern.compile(
             "([0-9a-fA-F]*:[0-9a-fA-F:.]*)|([\\d.]+)");

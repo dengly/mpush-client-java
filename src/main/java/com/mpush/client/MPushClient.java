@@ -51,6 +51,8 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * MPush客户端
+ *
  * @author ohun@live.cn (夜色)
  */
 /*package*/final class MPushClient implements Client, AckCallback {
@@ -161,6 +163,10 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
         }
     }
 
+    /**
+     * 监控检查
+     * @return
+     */
     @Override
     public boolean healthCheck() {
 
@@ -186,16 +192,21 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
         return true;
     }
 
+    /**
+     * 快速连接
+     */
     @Override
     public void fastConnect() {
         SessionStorage storage = config.getSessionStorage();
         if (storage == null) {
+            // 发生握手
             handshake();
             return;
         }
 
         String ss = storage.getSession();
         if (Strings.isBlank(ss)) {
+            // 发生握手
             handshake();
             return;
         }
@@ -204,6 +215,7 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
         if (session == null || session.isExpired()) {
             storage.clearSession();
             logger.w("fast connect failure session expired, session=%s", session);
+            // 发生握手
             handshake();
             return;
         }
@@ -225,6 +237,9 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
         connection.getSessionContext().changeCipher(session.cipher);
     }
 
+    /**
+     * 发生握手
+     */
     @Override
     public void handshake() {
         SessionContext context = connection.getSessionContext();
@@ -250,8 +265,13 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
         context.changeCipher(new AesCipher(message.clientKey, message.iv));
     }
 
+    /**
+     * 绑定用户
+     * @param userId
+     * @param tags
+     */
     @Override
-    public void bindUser(final String userId, final String tags) {
+    public void bindUser(final String userId, final String alias, final String tags) {
         if (!connection.getSessionContext().handshakeOk()) {
             logger.w("connection is not handshake ok!");
             return;
@@ -263,17 +283,21 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
         }
         SessionContext context = connection.getSessionContext();
         if (context.bindUser != null) {
-            if (userId.equals(context.bindUser)) {//已经绑定
-                if (tags != null && tags.equals(context.tags)) return;
+            if (userId.equals(context.bindUser)) {
+                //已经绑定
+                if ((tags != null && tags.equals(context.tags))
+                        && (alias != null && alias.equals(context.alias))) return;
             } else {
-                unbindUser();//切换用户，要先解绑老用户
+                //切换用户，要先解绑老用户
+                unbindUser();
             }
         }
-        context.setBindUser(userId).setTags(tags);
-        config.setUserId(userId).setTags(tags);
+        context.setBindUser(userId).setAlias(alias).setTags(tags);
+        config.setUserId(userId).setAlias(alias).setTags(tags);
         BindUserMessage message = BindUserMessage
                 .buildBind(connection)
                 .setUserId(userId)
+                .setAlias(alias)
                 .setTags(tags);
         message.encodeBody();
         ackRequestMgr.add(message.getSessionId(), AckContext
@@ -304,8 +328,8 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
             logger.w("unbind user is null");
             return;
         }
-        config.setUserId(null).setTags(null);
-        connection.getSessionContext().setBindUser(null).setTags(null);
+        config.setUserId(null).setAlias(null).setTags(null);
+        connection.getSessionContext().setBindUser(null).setAlias(null).setTags(null);
         BindUserMessage
                 .buildUnbind(connection)
                 .setUserId(userId)

@@ -44,7 +44,7 @@ public interface MPushProtocol {
 
     void handshake();
 
-    void bindUser(String userId, String tags);
+    void bindUser(String userId, String alias, String tags);
 
     void unbindUser();
 

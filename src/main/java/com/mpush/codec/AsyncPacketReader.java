@@ -37,6 +37,8 @@ import java.nio.channels.SocketChannel;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * 异步数据包读取器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class AsyncPacketReader implements PacketReader, Runnable {

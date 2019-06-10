@@ -30,6 +30,8 @@ import com.mpush.message.FastConnectOkMessage;
 /**
  * Created by ohun on 2016/1/23.
  *
+ * 快速连接正常处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class FastConnectOkHandler extends BaseMessageHandler<FastConnectOkMessage> {

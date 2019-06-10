@@ -28,6 +28,8 @@ import java.util.concurrent.Callable;
 /**
  * Created by yxx on 2016/6/9.
  *
+ * 连接线程
+ *
  * @author ohun@live.cn (夜色)
  */
 public class ConnectThread extends Thread {

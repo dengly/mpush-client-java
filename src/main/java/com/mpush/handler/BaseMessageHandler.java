@@ -25,6 +25,10 @@ import com.mpush.api.MessageHandler;
 import com.mpush.api.connection.Connection;
 import com.mpush.api.protocol.Packet;
 
+/**
+ * 基本信息处理器
+ * @param <T>
+ */
 public abstract class BaseMessageHandler<T extends Message> implements MessageHandler {
     public abstract T decode(Packet packet, Connection connection);
 

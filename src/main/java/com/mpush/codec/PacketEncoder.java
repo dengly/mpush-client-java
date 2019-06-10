@@ -27,6 +27,8 @@ import com.mpush.util.ByteBuf;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * 数据包编码器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class PacketEncoder {

@@ -30,6 +30,8 @@ import java.io.*;
 /**
  * Created by ohun on 2016/1/25.
  *
+ * 文件会话存储
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class FileSessionStorage implements SessionStorage {

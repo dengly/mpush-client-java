@@ -23,6 +23,8 @@ package com.mpush.util;
 /**
  * Created by ohun on 2015/12/23.
  *
+ * 字符串工具
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class Strings {

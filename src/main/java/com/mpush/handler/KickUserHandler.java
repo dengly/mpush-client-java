@@ -30,6 +30,8 @@ import com.mpush.message.KickUserMessage;
 /**
  * Created by ohun on 2016/1/23.
  *
+ * 剔除用户处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class KickUserHandler extends BaseMessageHandler<KickUserMessage> {

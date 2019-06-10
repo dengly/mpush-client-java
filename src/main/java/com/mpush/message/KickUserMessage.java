@@ -31,6 +31,8 @@ import java.nio.ByteBuffer;
 /**
  * Created by ohun on 2015/12/29.
  *
+ * 剔除用户信息
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class KickUserMessage extends ByteBufMessage {

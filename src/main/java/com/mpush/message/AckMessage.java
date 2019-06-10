@@ -10,6 +10,8 @@ import java.nio.ByteBuffer;
 /**
  * Created by ohun on 16/9/5.
  *
+ * 确认信息
+ *
  * @author ohun@live.cn (夜色)
  */
 public class AckMessage extends ByteBufMessage {

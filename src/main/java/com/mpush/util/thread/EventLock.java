@@ -27,6 +27,8 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * 事件锁
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class EventLock {

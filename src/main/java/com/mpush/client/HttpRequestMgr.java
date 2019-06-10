@@ -40,6 +40,8 @@ import static java.net.HttpURLConnection.HTTP_CLIENT_TIMEOUT;
 /**
  * Created by yxx on 2016/2/16.
  *
+ * http请求管理器
+ *
  * @author ohun@live.cn
  */
 public final class HttpRequestMgr {

@@ -29,6 +29,8 @@ import com.mpush.message.AckMessage;
 /**
  * Created by ohun on 16/9/5.
  *
+ * 确认处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public class AckHandler extends BaseMessageHandler<AckMessage> {

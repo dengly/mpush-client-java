@@ -31,6 +31,8 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * Created by ohun on 2015/12/25.
  *
+ * aes加密工具
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class AESUtils {

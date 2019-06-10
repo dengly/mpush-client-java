@@ -31,11 +31,16 @@ import java.nio.ByteBuffer;
 /**
  * Created by ohun on 2015/12/28.
  *
+ * 绑定用户信息
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class BindUserMessage extends ByteBufMessage {
+    // 用户id
     public String userId;
+    // 别名
     public String alias;
+    // 标签
     public String tags;
 
     private BindUserMessage(Command cmd, Connection connection) {

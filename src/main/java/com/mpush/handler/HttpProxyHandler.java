@@ -31,6 +31,8 @@ import com.mpush.message.HttpResponseMessage;
 /**
  * Created by ohun on 2015/12/30.
  *
+ * http代理处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class HttpProxyHandler extends BaseMessageHandler<HttpResponseMessage> {

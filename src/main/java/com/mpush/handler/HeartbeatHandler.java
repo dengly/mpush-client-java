@@ -30,6 +30,8 @@ import com.mpush.client.ClientConfig;
 /**
  * Created by ohun on 2015/12/30.
  *
+ * 心跳处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class HeartbeatHandler implements MessageHandler {

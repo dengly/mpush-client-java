@@ -23,6 +23,8 @@ package com.mpush.api;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * 数据包读取器
+ *
  * @author ohun@live.cn (夜色)
  */
 public interface PacketReader {

@@ -27,6 +27,8 @@ import com.mpush.util.crypto.AESUtils;
 /**
  * Created by ohun on 2015/12/28.
  *
+ * aes加密方式
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class AesCipher implements Cipher {

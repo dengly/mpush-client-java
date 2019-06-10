@@ -27,6 +27,8 @@ import java.nio.ByteBuffer;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * 数据包解码器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class PacketDecoder {

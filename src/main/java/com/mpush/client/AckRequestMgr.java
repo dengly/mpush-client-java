@@ -34,6 +34,8 @@ import java.util.concurrent.*;
 /**
  * Created by ohun on 2016/11/13.
  *
+ * 确认请求管理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class AckRequestMgr {

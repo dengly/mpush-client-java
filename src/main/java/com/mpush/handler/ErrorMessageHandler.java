@@ -32,6 +32,8 @@ import static com.mpush.api.protocol.ErrorCode.REPEAT_HANDSHAKE;
 /**
  * Created by ohun on 2015/12/30.
  *
+ * 错误信息处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class ErrorMessageHandler extends BaseMessageHandler<ErrorMessage> {

@@ -35,6 +35,8 @@ import com.mpush.security.CipherBox;
 /**
  * Created by ohun on 2016/1/23.
  *
+ * 握手正常处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class HandshakeOkHandler extends BaseMessageHandler<HandshakeOkMessage> {

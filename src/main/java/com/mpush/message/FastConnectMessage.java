@@ -30,6 +30,8 @@ import java.nio.ByteBuffer;
 /**
  * Created by ohun on 2015/12/25.
  *
+ * 快速连接信息
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class FastConnectMessage extends ByteBufMessage {

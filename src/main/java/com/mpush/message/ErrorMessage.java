@@ -30,6 +30,8 @@ import java.nio.ByteBuffer;
 /**
  * Created by ohun on 2015/12/28.
  *
+ * 错误信息
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class ErrorMessage extends ByteBufMessage {

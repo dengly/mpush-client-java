@@ -38,6 +38,8 @@ import static com.mpush.api.Constants.DEFAULT_WRITE_TIMEOUT;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * 异步数据包写入器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class AsyncPacketWriter implements PacketWriter {

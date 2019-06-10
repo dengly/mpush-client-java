@@ -25,6 +25,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by xiaoxu.yxx on 2015/7/19.
+ *
+ * 命名线程工厂
  */
 public final class NamedThreadFactory implements ThreadFactory {
     protected final AtomicInteger threadNumber = new AtomicInteger(1);

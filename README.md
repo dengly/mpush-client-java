@@ -7,14 +7,14 @@
 ## 当前版本
 
 ```groovy
-compile 'com.github.mpusher:mpush-client-java:0.0.2'
+compile 'com.github.mpusher:mpush-client-java:0.8.2'
 ```
 
 ```xml
 <dependency>
     <groupId>com.github.mpusher</groupId>
     <artifactId>mpush-client-java</artifactId>
-    <version>0.0.2</version>
+    <version>0.8.2</version>
 </dependency>
 ```
 

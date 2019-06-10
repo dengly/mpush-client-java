@@ -26,6 +26,9 @@ import com.mpush.util.thread.ExecutorManager;
 
 import java.util.concurrent.Executor;
 
+/**
+ * 默认客户端监听器
+ */
 /*package*/ final class DefaultClientListener implements ClientListener {
     private final Executor executor = ExecutorManager.INSTANCE.getDispatchThread();
     private ClientListener listener;
@@ -65,7 +68,7 @@ import java.util.concurrent.Executor;
         if (listener != null) {//dispatcher已经使用了Executor，此处直接同步调用
             listener.onHandshakeOk(client, heartbeat);
         }
-        client.bindUser(ClientConfig.I.getUserId(), ClientConfig.I.getTags());
+        client.bindUser(ClientConfig.I.getUserId(), ClientConfig.I.getAlias(), ClientConfig.I.getTags());
     }
 
     @Override

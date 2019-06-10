@@ -31,6 +31,8 @@ import com.mpush.api.Logger;
 /**
  * Created by ohun on 2016/1/17.
  *
+ * 客户端配置
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class ClientConfig {
@@ -45,6 +47,7 @@ public final class ClientConfig {
     private String osVersion;
     private String clientVersion;
     private String userId;
+    private String alias;
     private String tags;
     private int maxHeartbeat = Constants.DEF_HEARTBEAT;
     private int minHeartbeat = Constants.DEF_HEARTBEAT;
@@ -258,6 +261,15 @@ public final class ClientConfig {
 
     public ClientConfig setTags(String tags) {
         this.tags = tags;
+        return this;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public ClientConfig setAlias(String alias) {
+        this.alias = alias;
         return this;
     }
 

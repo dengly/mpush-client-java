@@ -29,6 +29,8 @@ import java.util.Date;
 /**
  * Created by ohun on 2016/1/25.
  *
+ * 默认日志工具
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class DefaultLogger implements Logger {

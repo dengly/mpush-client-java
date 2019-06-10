@@ -29,6 +29,8 @@ import java.security.interfaces.RSAPublicKey;
 /**
  * Created by ohun on 2015/12/28.
  *
+ * ras加密方式
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class RsaCipher implements Cipher {

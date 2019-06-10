@@ -31,6 +31,8 @@ import com.mpush.api.Logger;
 /**
  * Created by ohun on 2015/12/30.
  *
+ * 推送信息处理器
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class PushMessageHandler extends BaseMessageHandler<PushMessage> {

@@ -48,6 +48,8 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 /**
  * Created by ohun on 2016/1/21.
  *
+ * tcp连接
+ *
  * @author ohun@live.cn (夜色)
  */
 public final class TcpConnection implements Connection {
@@ -80,6 +82,10 @@ public final class TcpConnection implements Connection {
         this.writer = new AsyncPacketWriter(this, connLock);
     }
 
+    /**
+     * 已经连接
+     * @param channel
+     */
     private void onConnected(SocketChannel channel) {
         this.reconnectCount = 0;
         this.channel = channel;
@@ -90,6 +96,9 @@ public final class TcpConnection implements Connection {
         listener.onConnected(client);
     }
 
+    /**
+     * 关闭
+     */
     @Override
     public void close() {
         if (state.compareAndSet(connected, disconnecting)) {
@@ -102,6 +111,9 @@ public final class TcpConnection implements Connection {
         }
     }
 
+    /**
+     * 执行关闭
+     */
     private void doClose() {
         connLock.lock();
         try {
@@ -120,6 +132,9 @@ public final class TcpConnection implements Connection {
         }
     }
 
+    /**
+     * 连接
+     */
     @Override
     public void connect() {
         if (state.compareAndSet(disconnected, connecting)) {
@@ -135,12 +150,19 @@ public final class TcpConnection implements Connection {
         }
     }
 
+    /**
+     * 重连
+     */
     @Override
     public void reconnect() {
         close();
         connect();
     }
 
+    /**
+     * 执行重连
+     * @return
+     */
     private boolean doReconnect() {
         if (totalReconnectCount > MAX_TOTAL_RESTART_COUNT || !autoConnect) {// 过载保护
             logger.w("doReconnect failure reconnect count over limit or autoConnect off, total=%d, state=%s, autoConnect=%b"
@@ -174,10 +196,16 @@ public final class TcpConnection implements Connection {
         }
 
         logger.w("doReconnect, count=%d, total=%d, autoConnect=%b, state=%s", reconnectCount, totalReconnectCount, autoConnect, state.get());
+        // 执行连接，连接MPush服务器
         return doConnect();
     }
 
+    /**
+     * 执行连接，连接MPush服务器
+     * @return
+     */
     private boolean doConnect() {
+        // 获取MPush服务器地址
         List<String> address = allotClient.getServerAddress();
         if (address != null && address.size() > 0) {
             for (int i = 0; i < address.size(); i++) {
@@ -197,6 +225,12 @@ public final class TcpConnection implements Connection {
         return false;
     }
 
+    /**
+     * 执行连接，连接MPush服务器
+     * @param host
+     * @param port
+     * @return
+     */
     private boolean doConnect(String host, int port) {
         connLock.lock();
         logger.w("try connect server [%s:%s]", host, port);
@@ -218,11 +252,18 @@ public final class TcpConnection implements Connection {
         return false;
     }
 
+    /**
+     * 设置自动连接
+     * @param autoConnect
+     */
     public void setAutoConnect(boolean autoConnect) {
         this.connLock.lock();
-        this.autoConnect = autoConnect;
-        this.connLock.signalAll();
-        this.connLock.unlock();
+        try{
+            this.autoConnect = autoConnect;
+            this.connLock.signalAll();
+        }finally {
+            this.connLock.unlock();
+        }
     }
 
     @Override
