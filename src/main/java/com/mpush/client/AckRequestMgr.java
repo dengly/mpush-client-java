@@ -98,6 +98,9 @@ public final class AckRequestMgr {
         this.connection = connection;
     }
 
+    /**
+     * 请求任务
+     */
     public final class RequestTask extends FutureTask<Boolean> implements Runnable {
         private final int timeout;
         private final long sendTime;

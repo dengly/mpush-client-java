@@ -47,13 +47,21 @@ public final class MessageDispatcher implements PacketReceiver {
     private final AckRequestMgr ackRequestMgr;
 
     public MessageDispatcher() {
+        // 注册 心跳 处理
         register(Command.HEARTBEAT, new HeartbeatHandler());
+        // 注册 快速链接 处理
         register(Command.FAST_CONNECT, new FastConnectOkHandler());
+        // 注册 握手 处理
         register(Command.HANDSHAKE, new HandshakeOkHandler());
+        // 注册 剔除 处理
         register(Command.KICK, new KickUserHandler());
+        // 注册 正常 处理
         register(Command.OK, new OkMessageHandler());
+        // 注册 错误 处理
         register(Command.ERROR, new ErrorMessageHandler());
+        // 注册 推送 处理
         register(Command.PUSH, new PushMessageHandler());
+        // 注册 确认 处理
         register(Command.ACK, new AckHandler());
 
         this.ackRequestMgr = AckRequestMgr.I();

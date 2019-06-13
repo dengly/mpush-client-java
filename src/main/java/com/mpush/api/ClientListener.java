@@ -27,17 +27,51 @@ package com.mpush.api;
  */
 public interface ClientListener {
 
+    /**
+     * 连接成功回调
+     * @param client
+     */
     void onConnected(Client client);
 
+    /**
+     * 断开连接回调
+     * @param client
+     */
     void onDisConnected(Client client);
 
+    /**
+     * 握手成功回调
+     * @param client
+     * @param heartbeat
+     */
     void onHandshakeOk(Client client, int heartbeat);
 
+    /**
+     * 接收到推送回调
+     * @param client
+     * @param content
+     * @param messageId
+     */
     void onReceivePush(Client client, byte[] content, int messageId);
 
+    /**
+     * 剔除用户回调
+     * @param deviceId
+     * @param userId
+     */
     void onKickUser(String deviceId, String userId);
 
+    /**
+     * 绑定回调
+     * @param success
+     * @param userId
+     */
     void onBind(boolean success, String userId);
 
+    /**
+     * 解绑回调
+     * @param success
+     * @param userId
+     */
     void onUnbind(boolean success, String userId);
 }

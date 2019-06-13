@@ -93,6 +93,7 @@ public final class TcpConnection implements Connection {
         this.state.set(connected);
         this.reader.startRead();
         logger.w("connection connected !!!");
+        // 监听回调
         listener.onConnected(client);
     }
 

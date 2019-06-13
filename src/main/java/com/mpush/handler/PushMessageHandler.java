@@ -46,6 +46,7 @@ public final class PushMessageHandler extends BaseMessageHandler<PushMessage> {
 
     @Override
     public void handle(PushMessage message) {
+        // 接收到推送消息
         logger.d(">>> receive push message=%s", message.content.length);
         listener.onReceivePush(message.getConnection().getClient(),
                 message.content,

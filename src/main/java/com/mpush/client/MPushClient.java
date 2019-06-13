@@ -77,6 +77,7 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
 
         if (config.isEnableHttpProxy()) {
             this.httpRequestMgr = HttpRequestMgr.I();
+            // 注册 http代理 处理
             receiver.register(Command.HTTP_PROXY, new HttpProxyHandler());
         }
 
