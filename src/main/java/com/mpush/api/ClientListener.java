@@ -52,7 +52,7 @@ public interface ClientListener {
      * @param content
      * @param messageId
      */
-    void onReceivePush(Client client, byte[] content, int messageId);
+    void onReceivePush(Client client, byte[] content, long messageId);
 
     /**
      * 剔除用户回调

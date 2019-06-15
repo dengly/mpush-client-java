@@ -48,7 +48,7 @@ public interface MPushProtocol {
 
     void unbindUser();
 
-    void ack(int messageId);
+    void ack(long messageId);
 
     Future<Boolean> push(PushContext context);
 

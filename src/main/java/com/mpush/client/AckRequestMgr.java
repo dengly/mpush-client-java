@@ -43,7 +43,7 @@ public final class AckRequestMgr {
 
     private final Logger logger = ClientConfig.I.getLogger();
 
-    private final Map<Integer, RequestTask> queue = new ConcurrentHashMap<>();
+    private final Map<Long, RequestTask> queue = new ConcurrentHashMap<>();
     private final ScheduledExecutorService timer = ExecutorManager.INSTANCE.getTimerThread();
     private final Callable<Boolean> NONE = new Callable<Boolean>() {
         @Override
@@ -68,13 +68,13 @@ public final class AckRequestMgr {
     private AckRequestMgr() {
     }
 
-    public Future<Boolean> add(int sessionId, AckContext context) {
+    public Future<Boolean> add(long sessionId, AckContext context) {
         if (context.ackModel == AckModel.NO_ACK) return null;
         if (context.callback == null) return null;
         return addTask(new RequestTask(sessionId, context));
     }
 
-    public RequestTask getAndRemove(int sessionId) {
+    public RequestTask getAndRemove(long sessionId) {
         return queue.remove(sessionId);
     }
 
@@ -104,14 +104,14 @@ public final class AckRequestMgr {
     public final class RequestTask extends FutureTask<Boolean> implements Runnable {
         private final int timeout;
         private final long sendTime;
-        private final int sessionId;
+        private final long sessionId;
         private AckCallback callback;
         private Packet request;
         private Future<?> future;
         private int retryCount;
         private RetryCondition retryCondition;
 
-        private RequestTask(AckCallback callback, int timeout, int sessionId, Packet request, int retryCount, RetryCondition retryCondition) {
+        private RequestTask(AckCallback callback, int timeout, long sessionId, Packet request, int retryCount, RetryCondition retryCondition) {
             super(NONE);
             this.callback = callback;
             this.timeout = timeout;
@@ -122,7 +122,7 @@ public final class AckRequestMgr {
             this.retryCondition = retryCondition;
         }
 
-        private RequestTask(int sessionId, AckContext context) {
+        private RequestTask(long sessionId, AckContext context) {
             this(context.callback, context.timeout, sessionId, context.request, context.retryCount, context.retryCondition);
         }
 

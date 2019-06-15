@@ -67,7 +67,7 @@ public final class PacketDecoder {
         byte command = in.get();
         short cc = in.getShort();
         byte flags = in.get();
-        int sessionId = in.getInt();
+        long sessionId = in.getLong();
         byte lrc = in.get();
         byte[] body = null;
         if (bodyLength > 0) {

@@ -46,7 +46,7 @@ import static java.net.HttpURLConnection.HTTP_CLIENT_TIMEOUT;
  */
 public final class HttpRequestMgr {
     private static HttpRequestMgr I;
-    private final Map<Integer, RequestTask> queue = new ConcurrentHashMap<>();
+    private final Map<Long, RequestTask> queue = new ConcurrentHashMap<>();
     private final ScheduledExecutorService timer = ExecutorManager.INSTANCE.getTimerThread();
     private final Executor executor = ExecutorManager.INSTANCE.getDispatchThread();
     //private final HttpResponse response404 = new HttpResponse(HTTP_NOT_FOUND, "Not Found", null, null);
@@ -73,14 +73,14 @@ public final class HttpRequestMgr {
     private HttpRequestMgr() {
     }
 
-    public Future<HttpResponse> add(int sessionId, HttpRequest request) {
+    public Future<HttpResponse> add(long sessionId, HttpRequest request) {
         RequestTask task = new RequestTask(sessionId, request);
         queue.put(sessionId, task);
         task.future = timer.schedule(task, task.timeout, TimeUnit.MILLISECONDS);
         return task;
     }
 
-    public RequestTask getAndRemove(int sessionId) {
+    public RequestTask getAndRemove(long sessionId) {
         return queue.remove(sessionId);
     }
 
@@ -89,10 +89,10 @@ public final class HttpRequestMgr {
         private final String uri;
         private final int timeout;
         private final long sendTime;
-        private final int sessionId;
+        private final long sessionId;
         private Future<?> future;
 
-        private RequestTask(int sessionId, HttpRequest request) {
+        private RequestTask(long sessionId, HttpRequest request) {
             super(NONE);
             this.callback = request.getCallback();
             this.timeout = request.getTimeout();

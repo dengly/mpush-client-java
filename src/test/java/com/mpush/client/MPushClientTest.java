@@ -113,7 +113,7 @@ public class MPushClientTest {
         }
 
         @Override
-        public void onReceivePush(Client client, byte[] content, int messageId) {
+        public void onReceivePush(Client client, byte[] content, long messageId) {
             if (messageId > 0) client.ack(messageId);
         }
 

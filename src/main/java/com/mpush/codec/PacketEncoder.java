@@ -42,7 +42,7 @@ public final class PacketEncoder {
             out.put(packet.cmd);
             out.putShort(packet.cc);
             out.put(packet.flags);
-            out.putInt(packet.sessionId);
+            out.putLong(packet.sessionId);
             out.put(packet.lrc);
             if (packet.getBodyLength() > 0) {
                 out.put(packet.body);

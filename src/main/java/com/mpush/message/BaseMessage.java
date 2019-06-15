@@ -147,7 +147,7 @@ public abstract class BaseMessage implements Message {
         return SID_SEQ.incrementAndGet();
     }
 
-    public int getSessionId() {
+    public long getSessionId() {
         return packet.sessionId;
     }
 

@@ -72,7 +72,7 @@ import java.util.concurrent.Executor;
     }
 
     @Override
-    public void onReceivePush(final Client client, final byte[] content, int messageId) {
+    public void onReceivePush(final Client client, final byte[] content, long messageId) {
         if (listener != null) {//dispatcher已经使用了Executor，此处直接同步调用
             listener.onReceivePush(client, content, messageId);
         }

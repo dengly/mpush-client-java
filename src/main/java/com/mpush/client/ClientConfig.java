@@ -43,7 +43,7 @@ public final class ClientConfig {
     private int serverPort;
     private String publicKey;
     private String deviceId;
-    private String osName = Constants.DEF_OS_NAME;
+    private String osName;
     private String osVersion;
     private String clientVersion;
     private String userId;

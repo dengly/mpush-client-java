@@ -16,7 +16,7 @@ import java.nio.ByteBuffer;
  */
 public class AckMessage extends ByteBufMessage {
 
-    public AckMessage(int sessionId, Connection connection) {
+    public AckMessage(long sessionId, Connection connection) {
         super(new Packet(Command.ACK, sessionId), connection);
     }
 

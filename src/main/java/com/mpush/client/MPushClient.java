@@ -282,6 +282,22 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
             logger.w("bind user is null");
             return;
         }
+        String error = "invalid param:";
+        int errorInitLen = error.length();
+        if(!Strings.verifyUserId(userId)){
+            error = error + " userId";
+        }
+        if(tags!=null && !Strings.verifyTags(tags)){
+            error = error + " tags";
+        }
+        if(alias != null && !Strings.verifyAlias(alias)){
+            error = error + " alias";
+        }
+        if(error.length() > errorInitLen){
+            logger.w(error);
+            return;
+        }
+
         SessionContext context = connection.getSessionContext();
         if (context.bindUser != null) {
             if (userId.equals(context.bindUser)) {
@@ -339,7 +355,7 @@ import static com.mpush.api.Constants.MAX_HB_TIMEOUT_COUNT;
     }
 
     @Override
-    public void ack(int messageId) {
+    public void ack(long messageId) {
         if (messageId > 0) {
             AckMessage ackMessage = new AckMessage(messageId, connection);
             ackMessage.sendRaw();
